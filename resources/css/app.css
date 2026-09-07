@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --color-brand-navy: #18243d;
+    --color-brand-navy-dark: #0d1524;
+    --color-brand-navy-deep: #070c14;
+    --color-brand-navy-light: #243557;
+    --color-brand-navy-card: #1c2b48;
+    
+    --color-brand-gold: #F4BF45;
+    --color-brand-gold-light: #FEEAA3;
+    --color-brand-gold-dark: #C68B13;
+    --color-brand-gold-dim: rgba(244, 191, 69, 0.15);
+
+    --color-brand-offwhite: #F8F8F6;
+
+    --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom Utilities for Premium IOA Aesthetic */
+@layer utilities {
+    .bg-gold-gradient {
+        background: linear-gradient(135deg, #FFF0B3 0%, #F4BF45 40%, #D8981A 80%, #FAD45B 100%);
+    }
+
+    .bg-gold-gradient-hover {
+        background: linear-gradient(135deg, #FFF5CC 0%, #F7CD68 40%, #EAA929 80%, #FDE083 100%);
+    }
+
+    .text-gold-gradient {
+        background: linear-gradient(135deg, #FFF1B8 0%, #F4BF45 45%, #E5A51F 80%, #FFE58F 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .border-gold-subtle {
+        border-color: rgba(244, 191, 69, 0.22);
+    }
+
+    .border-gold-medium {
+        border-color: rgba(244, 191, 69, 0.45);
+    }
+
+    .shadow-gold-glow {
+        box-shadow: 0 0 25px -5px rgba(244, 191, 69, 0.3);
+    }
+
+    .shadow-gold-glow-sm {
+        box-shadow: 0 0 15px -3px rgba(244, 191, 69, 0.25);
+    }
+
+    .card-glass {
+        background: rgba(24, 36, 61, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(244, 191, 69, 0.15);
+    }
+
+    .card-glass-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-glass-hover:hover {
+        background: rgba(30, 47, 79, 0.9);
+        border-color: rgba(244, 191, 69, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4), 0 0 20px -4px rgba(244, 191, 69, 0.25);
+    }
+}
+
+/* Animations */
+@keyframes floatGlobe {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+}
+
+.animate-float-globe {
+    animation: floatGlobe 6s ease-in-out infinite;
+}
+
+@keyframes pulseGold {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.65;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-gold {
+    animation: pulseGold 4s ease-in-out infinite;
+}

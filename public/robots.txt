@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/logout
+Disallow: /contato
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ioanatal.com.br/sitemap.xml
