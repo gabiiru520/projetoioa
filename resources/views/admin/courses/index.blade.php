@@ -38,7 +38,13 @@
                                         <a href="{{ route('courses.show', $course->slug) }}" target="_blank" class="font-bold text-white hover:text-[#F4BF45] block">
                                             {{ $course->title }}
                                         </a>
-                                        <span class="text-xs text-slate-400">{{ $course->turmas_count }} turmas cadastradas</span>
+                                        <div class="flex items-center gap-2 text-xs text-slate-400">
+                                            <span>{{ $course->turmas_count }} {{ Str::plural('turma', $course->turmas_count) }}</span>
+                                            @if($course->team_members_count > 0)
+                                                <span>•</span>
+                                                <span class="text-[#FEEAA3]">{{ $course->team_members_count }} {{ $course->team_members_count === 1 ? 'docente' : 'docentes' }}</span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </td>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
@@ -53,6 +54,12 @@ class Course extends Model
     public function activeTurmas(): HasMany
     {
         return $this->hasMany(Turma::class)->where('status', '!=', 'Encerrada');
+    }
+
+    public function teamMembers(): BelongsToMany
+    {
+        return $this->belongsToMany(TeamMember::class, 'course_team_member')
+            ->withTimestamps();
     }
 
     public function getImageUrlAttribute(): string

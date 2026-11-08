@@ -6,7 +6,7 @@
 @section('extra_head')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@type": "Course",
   "name": "{{ e($course->title) }}",
   "description": "{{ e(Str::limit($course->summary, 300)) }}",
@@ -145,6 +145,37 @@
                                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold text-[#18243d] bg-gold-gradient shadow-gold-glow-sm hover:scale-105 transition-transform">
                                             <span>Matricular via WhatsApp</span>
                                         </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Professores deste curso -->
+                    @if($course->teamMembers->isNotEmpty())
+                        <div class="card-glass p-8 rounded-2xl space-y-6">
+                            <h3 class="text-2xl font-serif font-bold text-white border-b border-white/10 pb-4 flex items-center gap-2">
+                                Professores deste Curso
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach($course->teamMembers as $member)
+                                    <div class="card-glass card-glass-hover rounded-2xl overflow-hidden flex flex-col group border border-white/10">
+                                        <div class="aspect-[3/4] overflow-hidden bg-slate-800 relative">
+                                            <img src="{{ asset_media($member->photo) }}" alt="{{ $member->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                            <div class="absolute inset-0 bg-gradient-to-t from-[#0e172a] via-transparent to-transparent opacity-80"></div>
+                                            @if($member->cro)
+                                                <div class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-black/70 text-[11px] font-semibold text-[#FEEAA3] border border-[#F4BF45]/20">
+                                                    {{ $member->cro }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="p-4 space-y-1">
+                                            <h4 class="text-sm font-serif font-bold text-white group-hover:text-[#F4BF45] transition-colors leading-snug">{{ $member->name }}</h4>
+                                            <p class="text-xs text-[#F4BF45] font-medium">{{ $member->role }}</p>
+                                            @if($member->bio)
+                                                <p class="text-xs text-slate-300 line-clamp-2 pt-1 leading-relaxed">{{ $member->bio }}</p>
+                                            @endif
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

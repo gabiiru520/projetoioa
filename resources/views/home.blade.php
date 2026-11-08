@@ -7,13 +7,13 @@
     <!-- HERO SECTION -->
     <section class="relative min-h-[90vh] flex items-center pt-8 pb-20 overflow-hidden">
         <!-- Subtle radial gold glow -->
-        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#F4BF45]/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute top-1/2 right-[5%] -translate-y-1/2 w-[700px] h-[700px] bg-[#F4BF45]/12 rounded-full blur-[170px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                 
                 <!-- Left text content -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="lg:col-span-6 xl:col-span-5 space-y-6 text-center lg:text-left relative z-10 max-w-xl">
                     
                     <!-- Network badge -->
                     <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#1e2f4f]/80 border border-[#F4BF45]/40 shadow-gold-glow-sm">
@@ -66,39 +66,19 @@
 
                 </div>
 
-                <!-- Right 3D Visual -->
-                <div class="lg:col-span-5 flex items-center justify-center relative">
-                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 flex items-center justify-center">
-                        
-                        <!-- Glowing backdrop ring -->
-                        <div class="absolute inset-0 rounded-full border border-[#F4BF45]/20 animate-pulse-gold"></div>
-                        <div class="absolute -inset-4 rounded-full border border-[#F4BF45]/10 animate-spin" style="animation-duration: 40s;"></div>
-                        
-                        <!-- 3D Globe Vector -->
-                        <img src="{{ asset('images/globe-3d.svg') }}" alt="Globo IOA 3D" class="w-64 h-64 sm:w-80 sm:h-80 object-contain drop-shadow-[0_20px_40px_rgba(244,191,69,0.35)] animate-float-globe">
-                        
-                        <!-- Floating Feature Card 1 -->
-                        <div class="absolute -bottom-2 -left-4 sm:bottom-4 sm:-left-6 p-4 rounded-2xl card-glass shadow-2xl border border-[#F4BF45]/30 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-gold-gradient flex items-center justify-center text-[#18243d] font-bold">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-white uppercase tracking-wider">Certificação</div>
-                                <div class="text-[11px] text-[#F4BF45]">Padrão Internacional</div>
-                            </div>
-                        </div>
+                <!-- Right Column: Foto da Sede IOA Natal -->
+                <div class="lg:col-span-6 xl:col-span-7 flex items-center justify-center lg:justify-end relative mt-8 lg:mt-0">
+                    <div class="relative flex items-center justify-center lg:translate-x-20 xl:translate-x-36 2xl:translate-x-48 w-full max-w-[500px] sm:max-w-[600px] lg:w-[680px] lg:max-w-[680px] xl:w-[760px] xl:max-w-[760px] 2xl:w-[820px] 2xl:max-w-[820px] shrink-0">
+                        <!-- Glow radial dourado sutil atrás da foto -->
+                        <div class="absolute -inset-6 bg-[#F4BF45]/15 rounded-3xl blur-[100px] pointer-events-none"></div>
+                        <div class="absolute -inset-2 rounded-3xl border border-[#F4BF45]/15 animate-pulse-gold pointer-events-none"></div>
 
-                        <!-- Floating Feature Card 2 -->
-                        <div class="absolute -top-2 -right-4 sm:top-6 sm:-right-4 p-4 rounded-2xl card-glass shadow-2xl border border-[#F4BF45]/30 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-[#1e2f4f] text-[#F4BF45] border border-[#F4BF45]/40 flex items-center justify-center font-bold">
-                                3D
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-white uppercase tracking-wider">Fluxo Digital</div>
-                                <div class="text-[11px] text-slate-300">Scanner & CAD/CAM</div>
-                            </div>
+                        <!-- Card com a foto da sede -->
+                        <div class="relative z-10 w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#F4BF45]/30 shadow-2xl shadow-black/80 group">
+                            <img src="{{ asset('images/IOA%20NATAL.png') }}?v=1" 
+                                 alt="Sede do IOA Natal — Instituto Odontológico das Américas" 
+                                 class="w-full h-auto object-cover aspect-video transition-transform duration-700 group-hover:scale-105">
                         </div>
-
                     </div>
                 </div>
 
@@ -300,6 +280,58 @@
 
         </div>
     </section>
+
+    <!-- SECTION: CORPO DOCENTE -->
+    @if($teamMembers->isNotEmpty())
+    <section class="py-24 relative bg-[#0e172a]/50 border-y border-white/5" id="corpo-docente">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#F4BF45]/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+                <div class="space-y-3">
+                    <span class="text-xs uppercase font-bold tracking-widest text-[#F4BF45]">Excelência Acadêmica</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Nosso Corpo Docente</h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-xl">Doutores, mestres e especialistas de referência nacional e internacional, comprometidos com a sua formação clínica de alto nível.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach($teamMembers as $member)
+                    <div class="group card-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#F4BF45]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-gold-glow-sm">
+                        {{-- Foto --}}
+                        <div class="relative h-56 overflow-hidden bg-[#1a2840]">
+                            @if($member->photo)
+                                <img src="{{ asset_media($member->photo) }}"
+                                     alt="{{ $member->name }}"
+                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-5xl font-serif font-bold text-[#F4BF45]/40">
+                                    {{ strtoupper(substr($member->name, 0, 2)) }}
+                                </div>
+                            @endif
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0e172a] via-transparent to-transparent opacity-80"></div>
+                        </div>
+
+                        {{-- Info --}}
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-serif font-bold text-white leading-snug group-hover:text-[#F4BF45] transition-colors">
+                                {{ $member->name }}
+                            </h3>
+                            <p class="text-xs text-[#F4BF45] font-semibold uppercase tracking-wide">{{ $member->role }}</p>
+                            @if($member->cro)
+                                <p class="text-xs text-slate-400">{{ $member->cro }}</p>
+                            @endif
+                            @if($member->bio)
+                                <p class="text-xs text-slate-300 leading-relaxed line-clamp-3 pt-1">{{ $member->bio }}</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+    @endif
 
     <!-- SECTION: PRÉVIA DO PORTFÓLIO & ESTRUTURA -->
     <section class="py-24 relative">

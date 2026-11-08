@@ -43,9 +43,10 @@ class CourseController extends Controller
     {
         $course = Course::where('slug', $slug)
             ->where('is_active', true)
-            ->with(['activeTurmas' => function ($q) {
-                $q->orderBy('start_date', 'asc');
-            }])
+            ->with([
+                'activeTurmas' => fn ($q) => $q->orderBy('start_date', 'asc'),
+                'teamMembers' => fn ($q) => $q->where('is_active', true)->orderBy('sort_order'),
+            ])
             ->firstOrFail();
 
         $relatedCourses = Course::where('is_active', true)

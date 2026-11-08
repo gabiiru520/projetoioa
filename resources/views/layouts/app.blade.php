@@ -37,7 +37,7 @@
                 
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/logo-ioa.svg') }}" alt="IOA Natal" class="h-10 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('images/logo-ioaBranco.svg') }}?v=2" alt="IOA Natal" class="h-10 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105">
                 </a>
 
                 <!-- Desktop Nav -->
@@ -46,6 +46,7 @@
                     <a href="{{ route('about') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('about') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Sobre Nós</a>
                     <a href="{{ route('courses.index') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('courses.*') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Nossos Cursos</a>
                     <a href="{{ route('turmas.index') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('turmas.*') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Turmas</a>
+                    <a href="{{ route('home') }}#corpo-docente" class="px-3 py-2 text-sm font-medium transition-colors {{ false ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Corpo Docente</a>
                     <a href="{{ route('portfolio.index') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('portfolio.*') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Portfólio</a>
                     <a href="{{ route('blog.index') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('blog.*') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Blog</a>
                     <a href="{{ route('contact.index') }}" class="px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('contact.*') ? 'text-[#F4BF45] font-semibold' : 'text-slate-200 hover:text-[#F4BF45]' }}">Contato</a>
@@ -96,6 +97,7 @@
             <a href="{{ route('about') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('about') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Sobre Nós</a>
             <a href="{{ route('courses.index') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('courses.*') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Nossos Cursos</a>
             <a href="{{ route('turmas.index') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('turmas.*') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Turmas</a>
+            <a href="{{ route('home') }}#corpo-docente" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200">Corpo Docente</a>
             <a href="{{ route('portfolio.index') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('portfolio.*') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Portfólio</a>
             <a href="{{ route('blog.index') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('blog.*') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Blog</a>
             <a href="{{ route('contact.index') }}" class="block px-3 py-2.5 rounded-lg text-base font-medium {{ request()->routeIs('contact.*') ? 'text-[#F4BF45] bg-white/5' : 'text-slate-200' }}">Contato</a>
@@ -148,7 +150,7 @@
                 
                 <!-- Col 1: About & Brand -->
                 <div class="space-y-4">
-                    <img src="{{ asset('images/logo-ioa.svg') }}" alt="IOA Natal" class="h-11 w-auto">
+                    <img src="{{ asset('images/logo-ioaBranco.svg') }}?v=2" alt="IOA Natal" class="h-12 w-auto">
                     <p class="text-sm text-slate-300 leading-relaxed">
                         {{ setting('site_tagline', 'Excelência Internacional em Pós-Graduação Odontológica.') }} Integrante da maior rede de ensino odontológico premium das Américas.
                     </p>

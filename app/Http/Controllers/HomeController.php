@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\PageContent;
 use App\Models\PortfolioItem;
 use App\Models\Post;
+use App\Models\TeamMember;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 
@@ -52,11 +53,14 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        $teamMembers = TeamMember::orderBy('sort_order', 'asc')->get();
+
         return view('home', compact(
             'heroContent',
             'aboutSummary',
             'featuredCourses',
             'openTurmas',
+            'teamMembers',
             'portfolioItems',
             'latestPosts'
         ));

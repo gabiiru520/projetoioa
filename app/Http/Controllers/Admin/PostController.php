@@ -24,6 +24,18 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'title.required' => 'O título da publicação é obrigatório.',
+            'category.required' => 'A categoria é obrigatória.',
+            'content.required' => 'O conteúdo da publicação é obrigatório.',
+            'author.required' => 'O autor da publicação é obrigatório.',
+            'image.file' => 'O arquivo enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
+        ];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:posts,slug',
@@ -34,9 +46,9 @@ class PostController extends Controller
             'tags' => 'nullable|string|max:255',
             'status' => 'required|in:published,draft,scheduled',
             'published_at' => 'nullable|date',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
-        ]);
+        ], $messages);
 
         $validated['slug'] = !empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($validated['title']);
         
@@ -64,6 +76,18 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $messages = [
+            'title.required' => 'O título da publicação é obrigatório.',
+            'category.required' => 'A categoria é obrigatória.',
+            'content.required' => 'O conteúdo da publicação é obrigatório.',
+            'author.required' => 'O autor da publicação é obrigatório.',
+            'image.file' => 'O arquivo enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
+        ];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:posts,slug,' . $post->id,
@@ -74,14 +98,14 @@ class PostController extends Controller
             'tags' => 'nullable|string|max:255',
             'status' => 'required|in:published,draft,scheduled',
             'published_at' => 'nullable|date',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
-        ]);
+        ], $messages);
 
         $validated['slug'] = !empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($validated['title']);
 
         if ($request->hasFile('image')) {
-            if ($post->image && !Str::startsWith($post->image, ['http://', 'https://'])) {
+            if ($post->image && !Str::startsWith($post->image, ['http://', 'https://', 'images/'])) {
                 Storage::disk('public')->delete($post->image);
             }
             $path = $request->file('image')->store('blog', 'public');

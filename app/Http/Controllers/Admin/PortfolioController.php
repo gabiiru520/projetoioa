@@ -27,16 +27,26 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'title.required' => 'O título da foto / projeto é obrigatório.',
+            'category.required' => 'A categoria é obrigatória.',
+            'image.file' => 'O arquivo enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
+        ];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:100',
             'description' => 'nullable|string',
             'date_label' => 'nullable|string|max:100',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
             'is_featured' => 'boolean',
             'sort_order' => 'integer',
-        ]);
+        ], $messages);
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['sort_order'] = (int) ($validated['sort_order'] ?? 0);
@@ -64,22 +74,32 @@ class PortfolioController extends Controller
 
     public function update(Request $request, PortfolioItem $portfolio)
     {
+        $messages = [
+            'title.required' => 'O título da foto / projeto é obrigatório.',
+            'category.required' => 'A categoria é obrigatória.',
+            'image.file' => 'O arquivo enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
+        ];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:100',
             'description' => 'nullable|string',
             'date_label' => 'nullable|string|max:100',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
             'is_featured' => 'boolean',
             'sort_order' => 'integer',
-        ]);
+        ], $messages);
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['sort_order'] = (int) ($validated['sort_order'] ?? 0);
 
         if ($request->hasFile('image')) {
-            if ($portfolio->image && !Str::startsWith($portfolio->image, ['http://', 'https://'])) {
+            if ($portfolio->image && !Str::startsWith($portfolio->image, ['http://', 'https://', 'images/'])) {
                 Storage::disk('public')->delete($portfolio->image);
             }
             $path = $request->file('image')->store('portfolio', 'public');
@@ -96,7 +116,7 @@ class PortfolioController extends Controller
 
     public function destroy(PortfolioItem $portfolio)
     {
-        if ($portfolio->image && !Str::startsWith($portfolio->image, ['http://', 'https://'])) {
+        if ($portfolio->image && !Str::startsWith($portfolio->image, ['http://', 'https://', 'images/'])) {
             Storage::disk('public')->delete($portfolio->image);
         }
         $portfolio->delete();

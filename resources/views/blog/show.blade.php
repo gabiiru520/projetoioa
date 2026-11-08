@@ -6,7 +6,7 @@
 @section('extra_head')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "{{ e($post->title) }}",
   "description": "{{ e(Str::limit($post->excerpt, 200)) }}",
@@ -19,7 +19,7 @@
     "name": "IOA Natal — Instituto de Odontologia das Américas",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ asset('images/logo-ioa.svg') }}"
+      "url": "{{ asset('images/logo-ioaBranco.svg') }}"
     }
   },
   "url": "{{ url()->current() }}",

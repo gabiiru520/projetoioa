@@ -12,7 +12,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::withCount('turmas')
+        $courses = Course::withCount(['turmas', 'teamMembers'])
+            ->with('teamMembers')
             ->orderBy('sort_order', 'asc')
             ->orderBy('id', 'desc')
             ->paginate(15);
@@ -41,11 +42,20 @@ class CourseController extends Controller
             'syllabus' => 'nullable|string',
             'investment' => 'nullable|string|max:255',
             'coordinator' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
             'sort_order' => 'integer',
+        ], [
+            'title.required' => 'O título do curso é obrigatório.',
+            'category.required' => 'A categoria do curso é obrigatória.',
+            'modality.required' => 'A modalidade do curso é obrigatória.',
+            'image.file' => 'O arquivo de imagem enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
         ]);
 
         $validated['slug'] = !empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($validated['title']);
@@ -68,6 +78,7 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
+        $course->load('teamMembers');
         return view('admin.courses.form', compact('course'));
     }
 
@@ -86,11 +97,20 @@ class CourseController extends Controller
             'syllabus' => 'nullable|string',
             'investment' => 'nullable|string|max:255',
             'coordinator' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg,jfif,heic,heif,avif|max:20480',
             'image_url' => 'nullable|url|max:500',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
             'sort_order' => 'integer',
+        ], [
+            'title.required' => 'O título do curso é obrigatório.',
+            'category.required' => 'A categoria do curso é obrigatória.',
+            'modality.required' => 'A modalidade do curso é obrigatória.',
+            'image.file' => 'O arquivo de imagem enviado não é válido.',
+            'image.mimes' => 'Formato de imagem não suportado. Utilize JPG, PNG, WEBP, GIF, SVG, AVIF ou HEIC.',
+            'image.max' => 'A imagem selecionada excede o tamanho máximo de 20 MB.',
+            'image.uploaded' => 'Falha no envio da imagem. O arquivo pode ter excedido o limite de upload do servidor.',
+            'image_url.url' => 'A URL informada para a imagem é inválida.',
         ]);
 
         $validated['slug'] = !empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($validated['title']);
@@ -99,7 +119,7 @@ class CourseController extends Controller
         $validated['sort_order'] = (int) ($validated['sort_order'] ?? 0);
 
         if ($request->hasFile('image')) {
-            if ($course->image && !Str::startsWith($course->image, ['http://', 'https://'])) {
+            if ($course->image && !Str::startsWith($course->image, ['http://', 'https://', 'images/'])) {
                 Storage::disk('public')->delete($course->image);
             }
             $path = $request->file('image')->store('courses', 'public');

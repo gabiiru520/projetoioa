@@ -19,7 +19,7 @@
         <!-- Brand Header -->
         <div class="text-center mb-8 space-y-3">
             <a href="{{ route('home') }}" class="inline-block">
-                <img src="{{ asset('images/logo-ioa.svg') }}" alt="IOA Natal" class="h-12 w-auto mx-auto">
+                <img src="{{ asset('images/logo-ioaBranco.svg') }}?v=2" alt="IOA Natal" class="h-16 w-auto mx-auto">
             </a>
             <h1 class="text-xl font-bold text-white pt-2">Painel de Gestão de Conteúdo (CMS)</h1>
             <p class="text-xs text-slate-400">Insira suas credenciais de administrador para acessar.</p>
